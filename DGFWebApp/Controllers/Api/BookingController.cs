@@ -44,7 +44,7 @@ namespace DGFWebApp.Controllers.Api
                 //mail.Attachments.Add(new Attachment("D:\\TestFile.txt"));//--Uncomment this to send any attachment  
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("kirodiwalmanoj@gmail.com", "hmva sckq vrhp jxbz");
+                    smtp.Credentials = new NetworkCredential("kirodiwalmanoj@gmail.com", "");
 
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
