@@ -1,0 +1,45 @@
+﻿@page
+@model DGFWebApp.Pages.galleryModel
+@{
+}
+
+
+<section class="hero-section" id="home">
+    <div class="hero-content">
+        <h2>My Gallery</h2>
+        <p>Welcome to my Gallery. Here you'll find a selection of my work.<br>Explore my projects to learn more about what I do.</p>
+    </div>
+</section>
+
+<!-- Portfolio Grid -->
+<section class="portfolio-section" id="portfolio">
+    <div class="container">
+        <div id="galleryGrid" class="portfolio-grid">
+        </div>
+    </div>
+</section>
+
+<script>
+    async function load() {
+        const res = await fetch('/api/Gallery/getGallaryitems');
+        if (res.ok) {
+            const imgList = await res.json();
+
+            let innerHtml = '';
+
+            $.each(imgList, function (index, value) {
+                let imgHtml = ` <div class="portfolio-item">
+                        <img src="img/gallery/${value}" alt="Earth Cosmetics - Product Photography">
+                    </div>`;
+                innerHtml += imgHtml;
+            });
+            $('#galleryGrid').html(innerHtml);
+
+       
+        }
+        else {
+            $('#galleryGrid').html('<p style="text-align: center; color: #666;">Unable to load gallery. Please try again later.</p>');
+        }
+    }
+    load();
+</script>

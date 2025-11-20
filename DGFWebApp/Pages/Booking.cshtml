@@ -1,0 +1,120 @@
+﻿@page
+@model DGFWebApp.Pages.BookingModel
+@{
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<main>
+    <div class="container">
+        <h1 class="page-title">Book Now</h1>
+        <p class="page-subtitle">Fill out the form below and we'll get back to you shortly</p>
+
+        <div class="booking-container">
+            <div id="messageContainer" class="message"></div>
+
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="name" class="form-label">Full Name *</label>
+                    <input type="text"
+                           id="name"
+                           name="name"
+                           class="form-input"
+                           placeholder="Enter your full name"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input type="email"
+                           id="email"
+                           name="email"
+                           class="form-input"
+                           placeholder="your.email@example.com"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile" class="form-label">Mobile Number *</label>
+                    <input type="tel"
+                           id="mobile"
+                           name="mobile"
+                           class="form-input"
+                           placeholder="+91 0000000000"
+                           required>
+                </div>
+
+                <button type="submit" class="submit-button" id="submitButton">
+                    SUBMIT BOOKING
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+<script>
+    
+
+    // Handle form submission
+    $(document).ready(function() {
+        $('#bookingForm').on('submit', function(e) {
+            debugger;
+            e.preventDefault();
+
+            const submitButton = $('#submitButton');
+            const messageContainer = $('#messageContainer');
+
+            // Get form data
+            const formData = {
+                fullName: $('#name').val().trim(),
+                emailAddress: $('#email').val().trim(),
+                mobileNumber: $('#mobile').val().trim()
+            };
+
+            // Basic validation
+            if (!formData.fullName || !formData.emailAddress || !formData.mobileNumber) {
+                showMessage('Please fill in all required fields', 'error');
+                return;
+            }
+
+            // Disable button and show loading state
+            submitButton.prop('disabled', true).text('SUBMITTING...');
+            messageContainer.removeClass('success error').hide();
+
+            // Replace this URL with your actual API endpoint
+            const apiUrl = 'api/booking/bookingconfirmation';
+
+            // Send data to API
+            $.ajax({
+                url: apiUrl,
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(formData),
+                success: function(response) {
+                    console.log('Booking submitted successfully:', response);
+                    showMessage('Thank you! Your booking has been submitted successfully. We\'ll contact you soon.', 'success');
+                    $('#bookingForm')[0].reset();
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error submitting booking:', error);
+                    showMessage('Sorry, there was an error submitting your booking. Please try again or contact us directly.', 'error');
+                },
+                complete: function() {
+                    submitButton.prop('disabled', false).text('SUBMIT BOOKING');
+                }
+            });
+        });
+
+        function showMessage(text, type) {
+            const messageContainer = $('#messageContainer');
+            messageContainer
+                .removeClass('success error')
+                .addClass(type)
+                .text(text)
+                .show();
+
+            // Scroll to message
+            $('html, body').animate({
+                scrollTop: messageContainer.offset().top - 100
+            }, 300);
+        }
+    });
+</script>

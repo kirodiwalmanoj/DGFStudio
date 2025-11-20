@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DGFWebApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DGFWebApp.styles.css" asp-append-version="true" />
+    <script>
+        function toggleMenu() {
+            const menuOverlay = document.getElementById('menu-overlay');
+            const menuText = document.getElementById('menu-text');
+
+            if (menuOverlay.classList.contains('active')) {
+                menuOverlay.classList.remove('active');
+                menuText.textContent = 'Menu';
+            } else {
+                menuOverlay.classList.add('active');
+                menuText.textContent = 'Close';
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">Damn Good Studios</h1>
+                <button class="menu-button" onclick="toggleMenu()">
+                    <span id="menu-text">Menu</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="menu-overlay" id="menu-overlay">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+                        <li><a href="/events" onclick="toggleMenu()">Events</a></li>
+                        <li><a href="/gallery" onclick="toggleMenu()">Gallery</a></li>
+                        <li><a href="/booking" onclick="toggleMenu()">Booking</a></li>
+                        <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Damn Good Studios</h3>
+                </div>
+                <div class="footer-section">
+                    <p>123-456-7890</p>
+                    <p>info@mysite.com</p>
+                    <p>500 Terry Francine</p>
+                    <p>Street, 6th Floor, San</p>
+                </div>
+                <div class="footer-section">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Accessibility Statement</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

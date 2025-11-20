@@ -1,0 +1,76 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<section class="hero-section" id="home">
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-image">
+                <img src="img/gallery/DSC00363.jpg" alt="Creative artwork">
+            </div>
+
+            <div class="hero-image">
+                <img src="img/gallery/DSC00603.jpg" alt="Artistic creation">
+            </div>
+
+            <div class="hero-content">
+                <h2>A Hub for<br>Every Artist</h2>
+                <a href="/gallery" class="btn">Explore More</a>
+            </div>
+
+            <div class="hero-image hero-bottom-image">
+                <img src="img/gallery/DSC00465.jpg" alt="Studio work">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section" id="services">
+    <div class="container">
+        <h2>Services <button style="float:right;" class="btn"><a href="/booking" onclick="toggleMenu()">Book Now</a></button></h2>
+        
+        <div class="services-list">
+            <div class="service-item">
+                <div class="service-image">
+                    <img src="img/gallery/DSC00755.jpg" alt="Gallery Visit">
+                </div>
+                <div class="service-info">
+                    <h3>Event Hosting</h3>
+                    <p>Your vision, our mission</p>
+                </div>
+                <div class="service-actions">
+                    
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-image">
+                    <img src="img/gallery/DSC00492.jpg" alt="Artist Workshop">
+                </div>
+                <div class="service-info">
+                    <h3>Art Workshop</h3>
+                    <p>Hands-on creative sessions with professional artists</p>
+                </div>
+                <div class="service-actions">
+                  
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-image">
+                    <img src="img/gallery/DSC00445.jpg" alt="Studio Rental">
+                </div>
+                <div class="service-info">
+                    <h3>Studio Hire</h3>
+                    <p>Private studio space for your creative projects</p>
+                </div>
+                <div class="service-actions">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
